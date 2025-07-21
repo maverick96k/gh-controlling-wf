@@ -5,7 +5,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [18, 20]
+        node: [16, 18, 20]
+        exclude:
+          - os: [windows-latest, macos-latest]  # Exclude Windows and macOS for Node.js versions 16 and 18
+            node: [16]  # Exclude Windows for Node.js versions 16
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
